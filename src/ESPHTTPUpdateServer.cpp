@@ -25,7 +25,7 @@ static const String UpdateIndex PROGMEM = R"=====(
 )=====";
      
 const char UpdateSuccessResponse[] PROGMEM = R"=====(
-  <META http-equiv=\"refresh\" content=\"15;URL=/\">Update Success! Rebooting...
+  <META http-equiv='refresh' content='15;URL=/'>Update Success! Rebooting...
 )=====";
 
 ESPHTTPUpdateServer::ESPHTTPUpdateServer() {
