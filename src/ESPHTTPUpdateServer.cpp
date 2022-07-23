@@ -1,6 +1,6 @@
 #include "ESPHTTPUpdateServer.h"
 
-const char UpdateIndex[] PROGMEM = R"=====(
+static const String UpdateIndex PROGMEM = R"=====(
      <!DOCTYPE html>
      <html lang='en'>
      <head>
@@ -63,7 +63,7 @@ void ESPHTTPUpdateServer::setup(WebServer *server, const String& path, const Str
       if(this->_username != emptyString && this->_password != emptyString && !this->_server->authenticate(this->_username.c_str(), this->_password.c_str()))
         return _server->requestAuthentication();
         
-      this->_server->send_P(200, PSTR("text/html"), UpdateIndex);
+      this->_server->send_P(200, PSTR("text/html"), UpdateIndex.c_str());
     });
 
     // handler for the /update form POST (once file upload finishes)
