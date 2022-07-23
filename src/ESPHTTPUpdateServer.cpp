@@ -50,10 +50,14 @@ ESPHTTPUpdateServer::ESPHTTPUpdateServer(bool serial_debug) {
 }
 
 void ESPHTTPUpdateServer::setup(WebServer *server) {
-  this->setup(server, "/update", this->_username, this->_password);
+  this->setup(server, "/update", this->_username, this->_password, UpdateIndex.c_str());
 }
 
-void ESPHTTPUpdateServer::setup(WebServer *server, const String& path, const String& username, const String& password) {
+void ESPHTTPUpdateServer::setup(WebServer *server, const String& html) {
+  this->setup(server, "/update", this->_username, this->_password, html);
+}
+
+void ESPHTTPUpdateServer::setup(WebServer *server, const String& path, const String& username, const String& password, const String& html) {
     this->_server = server;
     this->_username = username;
     this->_password = password;
@@ -63,7 +67,7 @@ void ESPHTTPUpdateServer::setup(WebServer *server, const String& path, const Str
       if(this->_username != emptyString && this->_password != emptyString && !this->_server->authenticate(this->_username.c_str(), this->_password.c_str()))
         return _server->requestAuthentication();
         
-      this->_server->send_P(200, PSTR("text/html"), UpdateIndex.c_str());
+      this->_server->send_P(200, PSTR("text/html"), html.c_str());
     });
 
     // handler for the /update form POST (once file upload finishes)
