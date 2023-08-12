@@ -14,7 +14,8 @@ class ESPHTTPUpdateServer {
     ESPHTTPUpdateServer(bool serial_debug);
     ESPHTTPUpdateServer();
     void    setup(WebServer *server);
-    void    setup(WebServer *server, const String& path, const String& username, const String& password);
+    void    setup(WebServer *server, const String& html);
+    void    setup(WebServer *server, const String& path, const String& username, const String& password, const String& html);
 
   private:
     WebServer *_server;
